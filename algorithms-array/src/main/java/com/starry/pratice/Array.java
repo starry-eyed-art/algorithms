@@ -34,6 +34,7 @@ public class Array<E> {
 
     // 从指定位置插入一个元素
     public void addIndex(int index, E e) {
+        // 加入时允许index==size，是因为刚好作为最后一个元素插入到数组中
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index非法");
         }
@@ -80,6 +81,16 @@ public class Array<E> {
         return find(0);
     }
 
+    // 判断是否包含某个元素
+    public boolean contains(E element) {
+        for (int i = 0; i < data.length; i++) {
+            if (data[i].equals(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // 删除最后一个元素
     public E removeLast() {
         return remove(size - 1);
@@ -100,6 +111,7 @@ public class Array<E> {
 
     // 删除指定位置的元素
     public E remove(int index) {
+        // 删除时不允许index==size，是因为在数组中data[size]必定是null的
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("index非法");
         }
@@ -139,5 +151,20 @@ public class Array<E> {
         }
         res.append(']');
         return res.toString();
+    }
+
+    // 判断数组是否为空
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    // 获得数组的大小
+    public int getSize(){
+        return size;
+    }
+
+    // 获得数组的容量
+    public int getCapacity(){
+        return data.length;
     }
 }
