@@ -1,7 +1,5 @@
 package com.starry.pratice;
 
-import org.omg.CORBA.Object;
-
 /**
  * @Description 循环的精髓在于 (i+1) % data.length来实现索引上的循环
  * @Auther: https://github.com/starry-eyed-art
@@ -16,7 +14,7 @@ public class LoopQueue<E> implements Queue<E> {
 
     public LoopQueue(int capacity) {
         // capacity + 1 是因为在循环队列中必定有一个位置是空闲的
-        data = (E[]) new Integer[capacity + 1];
+        data = (E[]) new Object[capacity + 1];
         size = 0;
         tail = 0;
         front = 0;
@@ -54,7 +52,7 @@ public class LoopQueue<E> implements Queue<E> {
     }
 
     private void resize(int newCapacity) {
-        E[] newData = (E[]) new Integer[newCapacity + 1];
+        E[] newData = (E[]) new Object[newCapacity + 1];
         for (int i = 0; i < size; i++) {
             newData[i] = data[(front + i) % data.length];
         }
