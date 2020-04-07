@@ -1,4 +1,4 @@
-package com.starry.pratice;
+package com.starry.pratice.queue;
 
 /**
  * @Description 队列接口

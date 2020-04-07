@@ -1,6 +1,4 @@
-package com.starry.pratice.test;
-
-import com.starry.pratice.LoopQueue;
+package com.starry.pratice.queue;
 
 /**
  * @Description 循环队列测试

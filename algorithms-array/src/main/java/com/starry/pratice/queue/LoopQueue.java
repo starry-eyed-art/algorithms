@@ -1,4 +1,4 @@
-package com.starry.pratice;
+package com.starry.pratice.queue;
 
 /**
  * @Description 循环的精髓在于 (i+1) % data.length来实现索引上的循环

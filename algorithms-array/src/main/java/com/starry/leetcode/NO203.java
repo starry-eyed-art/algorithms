@@ -1,0 +1,85 @@
+package com.starry.leetcode;
+
+/**
+ * 删除链表中等于给定值 val 的所有节点。
+ * 示例:
+ * 输入: 1->2->6->3->4->5->6, val = 6
+ * 输出: 1->2->3->4->5
+ *
+ * @Auther: https://github.com/starry-eyed-art
+ * @Date: 2020/4/5 9:45 下午
+ */
+public class NO203 {
+
+    public ListNode removeElements(ListNode head, int val) {
+        return notRecursive(head, val);
+    }
+
+    // 非递归求解简化版
+    private ListNode notRecursiveSimplified(ListNode head, int val) {
+        // 创建虚拟节点
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+
+        ListNode prev = dummyHead;
+        while (prev.next != null) {
+            // 浮标从虚拟节点开始往后移动，先获取下一个节点next
+            ListNode next = prev.next;
+            // 判断next的值是否满足，满足的话删除next，此时不需要移动浮标，因为下一个元素已经变更
+            if (next.val == val) {
+                prev.next = prev.next.next;
+            } else {
+                // 不满足浮标继续往后移动一位
+                prev = prev.next;
+            }
+        }
+
+        return dummyHead.next;
+    }
+
+    // 非递归求解
+    private ListNode notRecursive(ListNode head, int val) {
+
+        // 创建虚拟节点
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+
+        ListNode prev = dummyHead;
+        while (prev.next != null) {
+            // 浮标从虚拟节点开始往后移动，先获取下一个节点next
+            ListNode next = prev.next;
+            // 判断next的值是否满足，满足的话删除next，此时不需要移动浮标，因为下一个元素已经变更
+            if (next.val == val) {
+                prev.next = next.next;
+                next.next = null;
+            } else {
+                // 不满足浮标继续往后移动一位
+                prev = prev.next;
+            }
+        }
+
+        return dummyHead.next;
+    }
+
+    // 递归求解
+    private ListNode recursive(ListNode head, int val) {
+        if (head == null) {
+            return null; // 求解最基础的问题
+        }
+        if (head.val == val) { // 将原问题拆解为更小的问题，其实就是 head + 除了head之外的链表
+            head = removeElements(head.next, val);
+        } else {
+            head.next = removeElements(head.next, val);
+        }
+        return head;
+    }
+
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+}

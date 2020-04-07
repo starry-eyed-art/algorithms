@@ -1,4 +1,6 @@
-package com.starry.pratice;
+package com.starry.pratice.stack;
+
+import com.starry.pratice.array.Array;
 
 /**
  * @Description 栈的实现

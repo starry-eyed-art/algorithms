@@ -1,4 +1,4 @@
-package com.starry.pratice;
+package com.starry.pratice.array;
 
 /**
  * @Description 自定义数组
@@ -34,7 +34,7 @@ public class Array<E> {
 
     // 从指定位置插入一个元素
     public void addIndex(int index, E e) {
-        // 加入时允许index==size，是因为刚好作为最后一个元素插入到数组中
+        // 加入时允许index==size，是因为size指向数组最后一个元素的下一个位置
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index非法");
         }

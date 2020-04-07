@@ -1,6 +1,4 @@
-package com.starry.pratice.test;
-
-import com.starry.pratice.ArrayStack;
+package com.starry.pratice.stack;
 
 /**
  * @Description

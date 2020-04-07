@@ -1,4 +1,6 @@
-package com.starry.pratice;
+package com.starry.pratice.queue;
+
+import com.starry.pratice.array.Array;
 
 /**
  * @Description 数组队列 FIFO 队首出队，队尾入队
