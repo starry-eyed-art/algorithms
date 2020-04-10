@@ -1,9 +1,8 @@
 package com.starry.pratice.array;
 
 /**
- * @Description
- * @Auther: xuxudong@cvte.com
- * @Date: 2020/4/3 10:07
+ * @Auther: https://github.com/starry-eyed-art
+ * @Date: 2020/4/7 12:57 下午
  */
 public class ArrayTest {
 

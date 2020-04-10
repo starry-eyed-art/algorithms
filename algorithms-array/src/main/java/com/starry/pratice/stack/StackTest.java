@@ -1,9 +1,8 @@
 package com.starry.pratice.stack;
 
 /**
- * @Description
- * @Auther: xuxudong@cvte.com
- * @Date: 2020/4/3 19:15
+ * @Auther: https://github.com/starry-eyed-art
+ * @Date: 2020/4/7 12:57 下午
  */
 public class StackTest {
 

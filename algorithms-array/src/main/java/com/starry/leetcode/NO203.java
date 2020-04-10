@@ -61,18 +61,26 @@ public class NO203 {
         return dummyHead.next;
     }
 
+    /**
+     * 递归其实就是把一个符号不断地赋值给一个数据结构中的每个元素，比如这个案例中，每个元素都会成为head，当这个元素的值等于我们想要删除的元素时，就通过head=?的方式
+     * 删除这个元素。如果不等于则把head传递给下一个元素，直到被传递的元素为null
+     *
+     * 因此，我们在写递归时，首先明确要传递的符号是什么？接着明确传递的终止条件是什么？最后明确符号是如何在数据结构中进行传递的。
+     */
     // 递归求解
     private ListNode recursive(ListNode head, int val) {
         if (head == null) {
             return null; // 求解最基础的问题
         }
         if (head.val == val) { // 将原问题拆解为更小的问题，其实就是 head + 除了head之外的链表
+            // 对head直接赋值相当于就是把head直接删掉
             head = removeElements(head.next, val);
         } else {
             head.next = removeElements(head.next, val);
         }
         return head;
     }
+
 
     private class ListNode {
         int val;
