@@ -1,53 +1,53 @@
-package com.starry.pratice.linkedlist;
+package com.starry.pratice.map;
 
 /**
  * @Description 链表
  * @Auther: https://github.com/starry-eyed-art
  * @Date: 2020/4/4 6:34 下午
  */
-public class LinkedList<E> {
+public class KVLinkedList<K, V> {
 
     // 为什么需要dummyHead，解决头节点和非头节点插入逻辑不一致的问题
     private Node dummyHead;
     private int size;
 
-    public LinkedList() {
+    public KVLinkedList() {
         dummyHead = new Node();
         size = 0;
     }
 
     // O(1)
-    public void addFirst(E e) {
-        add(0, e);
+    public void addFirst(K k, V v) {
+        add(0, k, v);
     }
 
     // O(n)
-    public void addLast(E e) {
-        add(size, e);
+    public void addLast(K k, V v) {
+        add(size, k, v);
     }
 
     // O(1)
-    public E removeFirst() {
+    public V removeFirst() {
         return remove(0);
     }
 
     // O(n)
-    public E removeLast() {
+    public V removeLast() {
         return remove(size - 1);
     }
 
     // O(1)
-    public E getFist() {
+    public V getFist() {
         return get(0);
     }
 
     // O(n)
-    public E getLast() {
+    public V getLast() {
         return get(size - 1);
     }
 
     // 根据索引插入元素
-    public void add(int index, E e) {
+    public void add(int index, K k, V v) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Add failed. Illegal index.");
 
@@ -56,7 +56,7 @@ public class LinkedList<E> {
         for (int i = 0; i < index; i++) {
             prev = prev.next;
         }
-        Node node = new Node(e);
+        Node node = new Node(k, v);
         node.next = prev.next;
         prev.next = node;
 
@@ -64,7 +64,7 @@ public class LinkedList<E> {
     }
 
     // 根据索引寻找元素
-    public E get(int index) {
+    public V get(int index) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("Add failed. Illegal index.");
 
@@ -73,11 +73,11 @@ public class LinkedList<E> {
             prev = prev.next;
         }
 
-        return prev.e;
+        return prev.v;
     }
 
     // 删除指定位置的元素
-    public E remove(int index) {
+    public V remove(int index) {
         if (index < 0 || index >= size)
             throw new IllegalArgumentException("remove failed. Illegal index.");
 
@@ -92,20 +92,18 @@ public class LinkedList<E> {
 
         size--;
 
-        return indexNode.e;
+        return indexNode.v;
     }
 
     // 修改元素
-    public void update(int index, E e) {
-        if (index < 0 || index > size)
-            throw new IllegalArgumentException("update failed. Illegal index.");
-
+    public void update(K k, V v) {
         Node prev = dummyHead.next;
-        for (int i = 0; i < index; i++) {
+        while (prev != null) {
+            if (prev.k.equals(k)) {
+                prev.v = v;
+            }
             prev = prev.next;
         }
-
-        prev.e = e;
     }
 
     public boolean isEmpty() {
@@ -116,10 +114,10 @@ public class LinkedList<E> {
         return size;
     }
 
-    public boolean contains(E e) {
+    public boolean contains(K k) {
         Node cur = dummyHead.next;
         while (cur != null) {
-            if (cur.e.equals(e)) {
+            if (cur.k.equals(k)) {
                 return true;
             }
             cur = cur.next;
@@ -127,31 +125,44 @@ public class LinkedList<E> {
         return false;
     }
 
-    public E remove(E e) {
+    public V remove(K k) {
         Node prev = dummyHead;
         while (prev.next != null) {
             prev = prev.next;
-            if (prev.e.equals(e)) {
+            if (prev.k.equals(k)) {
                 Node retNode = prev;
                 prev.next = prev.next.next;
-                return retNode.e;
+                return retNode.v;
             }
         }
         return null;
     }
 
+    public V getNode(K key) {
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            if (cur.k.equals(key)) {
+                return cur.v;
+            }
+            cur = cur.next;
+        }
+        return null;
+    }
+
     private class Node {
-        private E e;
+        private K k;
+        private V v;
         private Node next;
 
-        public Node(E e, Node next) {
-            this.e = e;
+        public Node(K k, V v, Node next) {
+            this.k = k;
+            this.v = v;
             this.next = next;
         }
 
         // 没有next的构造方法，一般此类节点会用于最后一个节点或者第一个节点，也有可能是先创建node后再指定next
-        public Node(E e) {
-            this(e, null);
+        public Node(K k, V v) {
+            this(k, v, null);
         }
 
         // 无参构造，一般用于创建DummyHead
@@ -161,7 +172,7 @@ public class LinkedList<E> {
 
         @Override
         public String toString() {
-            return e.toString();
+            return v.toString();
         }
     }
 
