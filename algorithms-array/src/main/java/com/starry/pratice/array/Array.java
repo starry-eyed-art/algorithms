@@ -22,6 +22,11 @@ public class Array<E> {
         data = (E[]) new Object[10];
     }
 
+    public Array(E[] data) {
+        this.data = data;
+        this.size = data.length;
+    }
+
     // 从头部插入一个元素
     public void addFirst(E e) {
         addIndex(0, e);
@@ -159,12 +164,25 @@ public class Array<E> {
     }
 
     // 获得数组的大小
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 
     // 获得数组的容量
-    public int getCapacity(){
+    public int getCapacity() {
         return data.length;
+    }
+
+    // 交换数组中的两个索引上的元素
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is illegal.");
+        E indexData = data[i];
+        data[i] = data[j];
+        data[j] = indexData;
+    }
+
+    public void set(int i, E e) {
+        data[i] = e;
     }
 }
