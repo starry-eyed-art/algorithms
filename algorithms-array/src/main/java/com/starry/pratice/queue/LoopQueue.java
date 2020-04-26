@@ -10,7 +10,7 @@ public class LoopQueue<E> implements Queue<E> {
     private E[] data;
     private int size;
     private int front;// 循环队列队首索引
-    private int tail;// 循环队列队尾索引
+    private int tail;// 循环队列队尾索引，永远指向一个NULL的位置
 
     public LoopQueue(int capacity) {
         // capacity + 1 是因为在循环队列中必定有一个位置是空闲的
