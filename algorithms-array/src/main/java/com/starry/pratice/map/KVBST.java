@@ -41,13 +41,14 @@ public class KVBST<K extends Comparable, V> {
             size++;
             return new Node(k, v);
         }
-        // > 当前节点 挂接到右子树
         if (k.compareTo(node.k) > 0) {
+            // > 当前节点 挂接到右子树
             node.right = addNode(node.right, k, v);
-        }
-        // < 当前节点，挂接到左子树
-        if (k.compareTo(node.k) < 0) {
+        } else if (k.compareTo(node.k) < 0) {
+            // < 当前节点，挂接到左子树
             node.left = addNode(node.left, k, v);
+        } else {
+            node.v = v;
         }
         return node;
     }
@@ -222,6 +223,7 @@ public class KVBST<K extends Comparable, V> {
     public Node getNode(K key) {
         return getNode(root, key);
     }
+
     public V getNodeVal(K key) {
         return getNode(root, key).v;
     }

@@ -44,10 +44,11 @@ public class BST<E extends Comparable> {
         // > 当前节点 挂接到右子树
         if (e.compareTo(node.e) > 0) {
             node.right = addNode(node.right, e);
-        }
-        // < 当前节点，挂接到左子树
-        if (e.compareTo(node.e) < 0) {
+        } else if (e.compareTo(node.e) < 0) {
+            // < 当前节点，挂接到左子树
             node.left = addNode(node.left, e);
+        } else {
+            node.e = e;
         }
         return node;
     }
