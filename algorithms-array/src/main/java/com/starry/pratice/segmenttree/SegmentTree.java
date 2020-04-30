@@ -1,7 +1,5 @@
 package com.starry.pratice.segmenttree;
 
-import org.omg.CORBA.Object;
-
 /**
  * @Description 线段树 线段树是平衡二叉树但不是满二叉树
  * @Auther: https://github.com/starry-eyed-art
