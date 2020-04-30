@@ -67,6 +67,29 @@ public class SegmentTree<E> {
         return merger.merge(left, right);
     }
 
+    public void set(int index, E e) {
+        set(0, 0, data.length - 1, index, e);
+    }
+
+    private void set(int treeIndex, int l, int r, int index, E e) {
+        if (l == r) {
+            tree[treeIndex] = e;
+            return;
+        }
+
+        int mid = l + (r - l) / 2;
+        int leftChild = leftChild(treeIndex);
+        int rightChild = rightChild(treeIndex);
+
+        if (index <= mid) {
+            set(leftChild, l, mid, index, e);
+        } else {
+            set(leftChild, mid + 1, r, index, e);
+        }
+
+        tree[treeIndex] = merger.merge(tree[leftChild], tree[rightChild]);
+    }
+
 
     public int getSize() {
         return data.length;
