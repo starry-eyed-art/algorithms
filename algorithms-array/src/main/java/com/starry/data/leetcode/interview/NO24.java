@@ -40,6 +40,8 @@ public class NO24 {
         if (head == null || head.next == null)  // 递归终止条件
             return head;
         // 将head.next进行反转，反转后的链表的头结点返回给newHead
+        // 因为递归返回时，第一个返回的是最后一个节点，此时newHead刚好就等于head.next，所以看起来后续没有对newhead做操作，其实一直在往newhead为头节点的链表后面加节点
+        // 这样newHead其实就是以最后一个节点为头节点的反转之后的链表
         ListNode newHead = reverseList2(head.next);
         // 这里要注意：在链表进行反转以后，head.next仍然指着原先的head.next
         // 因为我们在reverseList(head.next)的过程中，没有动head!
