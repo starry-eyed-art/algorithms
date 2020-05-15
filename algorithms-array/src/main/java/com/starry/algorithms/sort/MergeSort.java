@@ -69,10 +69,11 @@ public class MergeSort {
 
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 3, 4, 2, 111, 12, 1, 34, 212, 99, 4};
-        mergeSortBottomUp(arr);
-        for (int i : arr) {
-            System.out.println(i);
-        }
+//        int[] arr = new int[]{1, 3, 4, 2, 111, 12, 1, 34, 212, 99, 4};
+//        mergeSortBottomUp(arr);
+//        for (int i : arr) {
+//            System.out.println(i);
+//        }
+        System.out.println(1 + (2 -1) /2);
     }
 }

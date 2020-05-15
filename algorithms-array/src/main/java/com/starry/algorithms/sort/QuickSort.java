@@ -22,6 +22,9 @@ public class QuickSort {
 
     // 将arr从[l,r]区间中的第一个元素确定为中间值v，其他元素大于等于v的放到v的右边，小于v的放到v的左边
     private static int partition(int[] arr, int l, int r) {
+        // 通过随机替换l位置的元素来避免出现接近有序的数组
+        swap( arr, l , (int)(Math.random()*(r-l+1))+l );
+
         int v = arr[l];
         int j = l;// j指向比v小的数组中的最后一个元素，j++指向大于等于v的数组中的第一个元素
         for (int i = l + 1; i <= r; i++) {

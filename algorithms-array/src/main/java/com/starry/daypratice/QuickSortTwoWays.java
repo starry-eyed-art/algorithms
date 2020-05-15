@@ -1,9 +1,8 @@
-package com.starry.algorithms.sort;
+package com.starry.daypratice;
 
 /**
- * @Description 双路快排，目的是解决大量重复元素时会出现的时间复杂度退化为O(n^2)的问题，但是依旧不是最好的
  * @Auther: https://github.com/starry-eyed-art
- * @Date: 2020/5/9 7:46 上午
+ * @Date: 2020/5/12 10:21 下午
  */
 public class QuickSortTwoWays {
 
@@ -16,37 +15,33 @@ public class QuickSortTwoWays {
             return;
         }
         int p = partition(arr, l, r);
-        sort(arr, l, p - 1);
-        sort(arr, p + 1, r);
+        sort(arr, l, p-1);// 将l写成了0
+        sort(arr, p + 1, r);// 将p+1写成了p
     }
 
-    // j记录大于v这一端下一个要扫描的位置，停在整个数组最后一个小于等于V的位置
-    // i记录小于v这一端下一个要扫描的位置，停在整个数组第一个大于等于V的位置
     private static int partition(int[] arr, int l, int r) {
         swap( arr, l , (int)(Math.random()*(r-l+1))+l );
+
         int v = arr[l];
         int i = l + 1;
         int j = r;
         while (true) {
-            // 此处不能是arr[i] <= v，因为如果加上=时，处理{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}这种数组时会退化成O(n^2)
             while (i <= r && arr[i] < v) {
                 i ++;
             }
-            // 此处不能是arr[i] <= v，因为如果加上=时，处理{1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}这种数组时会退化成O(n^2)
             while (j >= l + 1 && arr[j] > v) {
-                j --;
+                j --;// 错写成j++
             }
             if (i > j) {
                 break;
             }
             swap(arr, i, j);
-            i ++;
-            j --;
+            i++;
+            j--;
         }
-        swap(arr, l, j);
+        swap(arr, j, l);
         return j;
     }
-
 
     private static void swap(int[] arr, int j, int i) {
         int jr = arr[j];
